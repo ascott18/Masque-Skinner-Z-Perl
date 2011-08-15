@@ -1,7 +1,8 @@
 ﻿
 local LBF = LibStub("LibButtonFacade", true)
 local LMB = LibStub("Masque", true) or (LibMasque and LibMasque("Button"))
-if not (LBF or LMB) then return end
+local Stub = (LBF or LMB)
+if not Stub then return end
 
 local f = CreateFrame("Frame")
 
@@ -26,7 +27,7 @@ local function DoStuff(self, event, addon)
 	if addon ~= addonName then return end
 	XPerlFacade = XPerlFacade or {}
 	db = XPerlFacade;
-	group = LBF:Group("XPerl")
+	group = Stub:Group("XPerl")
 	group:Skin(db.S,db.G,db.B,db.C);
 	for i=1,40 do
 		local name = "XPerl_PlayerbuffFrameAuraButton"..i
@@ -70,7 +71,7 @@ local function DoStuff(self, event, addon)
 			})
 		end
 	end
-	LBF:RegisterSkinCallback("XPerl", SkinCallback)
+	Stub:RegisterSkinCallback("XPerl", SkinCallback)
 	f:UnregisterAllEvents()
 end
 

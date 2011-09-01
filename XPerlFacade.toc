@@ -1,5 +1,5 @@
 ﻿## Interface: 40200
-## Title: XPerl Facade
+## Title: XPerlFacade
 ## Version: 3.1.3
 ## Author: Cybeloras of Mal'Ganis
 ## Notes: Skins the XPerl aura frames with ButtonFacade

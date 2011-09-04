@@ -1,8 +1,8 @@
 ﻿## Interface: 40200
-## Title: XPerlFacade
-## Version: 3.1.4
+## Title: X-Perl Facade
+## Version: 3.1.5
 ## Author: Cybeloras of Mal'Ganis
-## Notes: Skins the XPerl aura frames with ButtonFacade
+## Notes: Skins the X-Perl aura frames with ButtonFacade
 ## RequiredDeps: XPerl
 ## OptionalDeps: ButtonFacade, Masque
 ## SavedVariablesPerCharacter: XPerlFacade

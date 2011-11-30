@@ -1,8 +1,6 @@
 ﻿
-local LBF = LibStub("LibButtonFacade", true)
 local LMB = LibStub("Masque", true) or (LibMasque and LibMasque("Button"))
-local Stub = (LBF or LMB)
-if not Stub then return end
+if not LMB then return end
 
 local f = CreateFrame("Frame")
 
@@ -17,10 +15,7 @@ local noop = function() return end
 
 local function DoStuff(self, event, addon)
 	if event == "ADDON_LOADED" and addon == addonName then
-		XPerlFacade = XPerlFacade or {}
-		db = XPerlFacade;
-		group = Stub:Group("XPerl")
-		group:Skin(db.S,db.G,db.B,db.C);
+		group = LMB:Group("XPerl")
 		for i=1,40 do
 			local name = "XPerl_PlayerbuffFrameAuraButton"..i
 			local frame = _G[name]
@@ -63,16 +58,6 @@ local function DoStuff(self, event, addon)
 				})
 			end
 		end
-		if not LMB then
-			Stub:RegisterSkinCallback("XPerl", function(arg, SkinID, Gloss, Backdrop, Group, Button, Colors)
-				if db then
-					db.S = SkinID
-					db.G = Gloss
-					db.B = Backdrop
-					db.C = Colors
-				end
-			end)
-		end
 		f:UnregisterEvent(event)
 	end
 end
@@ -94,9 +79,9 @@ hooksecurefunc("CreateFrame", function (_, name)
 			Count 		= _G[name.."count"],
 			Border 		= _G[name.."border"],
 		})
-		if button:IsProtected() then
+		--if button:IsProtected() then
 			button.cooldown:SetFrameLevel(button:GetFrameLevel()-1)
-		end
+		--end
 		
 		button.SetFrameLevel = restore
 	end

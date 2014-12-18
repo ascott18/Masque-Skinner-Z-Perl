@@ -13,59 +13,14 @@ local db, group, queueUpdate
 local noop = function() return end
 
 
-local function DoStuff(self, event, addon)
-	if event == "ADDON_LOADED" and addon == addonName then
-		group = LMB:Group("XPerl")
-		for i=1,40 do
-			local name = "XPerl_PlayerbuffFrameAuraButton"..i
-			local frame = _G[name]
-			if not frame then
-				break 
-			else
-				group:AddButton(frame,{
-					Icon		= _G[name.."icon"],
-					Cooldown 	= _G[name.."cooldown"],
-					Count 		= _G[name.."count"],
-					Border 		= _G[name.."border"],
-				})
-			end
-		end
-		for i=1,40 do
-			local name = "XPerl_PlayerdebuffFrameAuraButton"..i
-			local frame = _G[name]
-			if not frame then
-				break 
-			else
-				group:AddButton(frame,{
-					Icon		= _G[name.."icon"],
-					Cooldown 	= _G[name.."cooldown"],
-					Count 		= _G[name.."count"],
-					Border 		= _G[name.."border"],
-				})
-			end
-		end
-		for i=1,3 do
-			local name = "XPerl_PlayerbuffFrameTempEnchant"..i
-			local frame = _G[name]
-			if not frame then
-				break 
-			else
-				group:AddButton(frame,{
-					Icon		= _G[name.."icon"],
-					Cooldown 	= _G[name.."cooldown"],
-					Count 		= _G[name.."count"],
-					Border 		= _G[name.."border"],
-				})
-			end
-		end
-		f:UnregisterEvent(event)
-	end
-end
+local group = LMB:Group("XPerl")
 
-
-hooksecurefunc("CreateFrame", function (_, name)	
-	if type(name) ~= "string" then return end
-	if strfind(name,"^XPerlBuff") or strfind(name,"^XPerl_Player.*FrameAuraButton") then
+local nextAuraIndex = 1
+local nextBuffIndex = 1
+local nextDebuffIndex = 1
+f:SetScript("OnUpdate", function()
+	while _G["XPerlBuff" .. nextAuraIndex] do
+		local name = "XPerlBuff" .. nextAuraIndex
 		local button = _G[name]
 		
 		local restore = button.SetFrameLevel
@@ -84,10 +39,43 @@ hooksecurefunc("CreateFrame", function (_, name)
 		--end
 		
 		button.SetFrameLevel = restore
+
+
+		nextAuraIndex = nextAuraIndex + 1
 	end
-end
-)
-	
-f:SetScript("OnEvent", DoStuff)
-f:RegisterEvent("ADDON_LOADED")
+
+
+	for i = nextBuffIndex, 1000 do
+		local name = "XPerl_PlayerbuffFrameAuraButton"..i
+		local frame = _G[name]
+		if not frame then
+			nextBuffIndex = i
+			break 
+		else
+			group:AddButton(frame,{
+				Icon		= _G[name.."icon"],
+				Cooldown 	= _G[name.."cooldown"],
+				Count 		= _G[name.."count"],
+				Border 		= _G[name.."border"],
+			})
+		end
+	end
+
+
+	for i = nextDebuffIndex, 1000 do
+		local name = "XPerl_PlayerdebuffFrameAuraButton"..i
+		local frame = _G[name]
+		if not frame then
+			nextDebuffIndex = i
+			break 
+		else
+			group:AddButton(frame,{
+				Icon		= _G[name.."icon"],
+				Cooldown 	= _G[name.."cooldown"],
+				Count 		= _G[name.."count"],
+				Border 		= _G[name.."border"],
+			})
+		end
+	end
+end)
 

@@ -1,10 +1,10 @@
 ﻿## Interface: 60000
-## X-Compatible-With: 50400
-## Title: Masque Skinner: X-Perl
-## Version: 3.3.2
-## Author: Cybeloras of Detheroc/Mal'Ganis
-## Notes: Skins the X-Perl aura frames with Masque
-## RequiredDeps: XPerl, Masque
-## X-Child-Of: XPerl
+## Title: Masque Skinner: X/Z-Perl
+## Version: 4.0.0
+## Author: Cybeloras
+## Notes: Skins the X-Perl or Z-Perl aura frames with Masque
+## OptionalDeps: XPerl, ZPerl
+## RequiredDeps: Masque
+## X-Child-Of: XPerl, ZPerl
 
 XPerlFacade.lua

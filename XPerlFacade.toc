@@ -1,7 +1,7 @@
-﻿## Interface: 60000
+﻿## Interface: 80000
 ## Title: Masque Skinner: X/Z-Perl
-## Version: 4.0.0
-## Author: Cybeloras
+## Version: 4.0.1
+## Author: Cybeloras of Aerie Peak
 ## Notes: Skins the X-Perl or Z-Perl aura frames with Masque
 ## OptionalDeps: XPerl, ZPerl
 ## RequiredDeps: Masque
